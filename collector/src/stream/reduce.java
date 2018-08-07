@@ -3,6 +3,7 @@ package stream;
 import java.util.stream.Stream;
 
 /**
+ * https://www.ibm.com/developerworks/cn/java/j-lo-java8streamapi/
  * reduce: 把 Stream 元素组合起来
  * Created by fxd on 2018/8/7.
  */
@@ -21,8 +22,11 @@ public class reduce {
         System.out.println(sumValue);
 
         //没有起始值的reduce返回Optional
-        sumValue = Stream.of(1, 2, 3, 4).reduce(Integer::sum).get();
-        System.out.println(sumValue);
+        if (Stream.of(1, 2, 3, 4).reduce(Integer::sum).isPresent()) {
+            sumValue = Stream.of(1, 2, 3, 4).reduce(Integer::sum).get();
+            System.out.println(sumValue);
+        }
+
 
         //过滤小写字母，小写字母的ascii码大于大写字母
         concat = Stream.of("a", "B", "c", "D", "e", "F").filter(x -> x.compareTo("Z") > 0)
