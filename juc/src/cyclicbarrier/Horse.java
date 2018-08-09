@@ -5,24 +5,29 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 /**
- *
  * Created by fxd on 2018/8/8.
  */
 public class Horse implements Runnable {
-    /**static 全局唯一**/
+    /**
+     * static 全局唯一
+     **/
     private static int counter = 0;
-    /**非static、final**/
+    /**
+     * 非static、final
+     **/
     private final int id = counter++;
-    /*步子*/
-    private static int strides = 0;
+    /**
+     * 步子，去掉书上的static关键字
+     */
+    private int strides = 0;
     private static Random rand = new Random(47);
     private static CyclicBarrier barrier;
 
-    public Horse(CyclicBarrier b) {
+    Horse(CyclicBarrier b) {
         barrier = b;
     }
 
-    public synchronized int getStrides() {
+    synchronized int getStrides() {
         return strides;
     }
 
@@ -47,8 +52,10 @@ public class Horse implements Runnable {
         return "Horse " + id + " ";
     }
 
-    /**打印马当前的位子**/
-    public String tracks() {
+    /**
+     * 打印马当前的位子
+     **/
+    String tracks() {
         StringBuilder s = new StringBuilder();
 
         for (int i = 0; i < getStrides(); i++) {
